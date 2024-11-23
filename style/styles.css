@@ -1,0 +1,48 @@
+body {
+    background-color: #6f42c1 !important;
+    font-family: Arial, sans-serif;
+}
+
+.card {
+    background-color: #FFD700 !important;
+    border-radius: 10px;
+    box-shadow: 0 0 15px 5px rgba(255, 215, 0, 0.7);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.card-header {
+    background-color: #6f42c1 !important;
+    color: white;
+}
+
+button {
+    background-color: #6f42c1 !important;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #5a2a9a;
+}
+
+#makeFavorite, #loadOrder {
+    background-color: #6f42c1 !important;
+}
+
+#makeFavorite:hover, #loadOrder:hover {
+    background-color: #5a2a9a;
+}
+
+input, select, .form-label {
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.section-header {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 1rem;
+}
