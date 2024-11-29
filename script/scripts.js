@@ -2,7 +2,9 @@ $(document).ready(() => {
     const favoriteOrder = {
         customerName: '',
         breadType: null,
+        meatType: [],
         toppings: [],
+        condiments: [],
         size: null,
         phoneNumber: ''
     };
@@ -12,13 +14,25 @@ $(document).ready(() => {
         const order = {
             customerName: $('#customerName').val(),
             breadType: $('#breadType').val(),
+            meatType: [],
             toppings: [],
+            condiments: [],
             size: $('#size').val(),
             phoneNumber: $('#phoneNumber').val()
         };
+
+        // Collect meat choices
         $('input[type="checkbox"]:checked').each(function () {
-            order.toppings.push($(this).val());
+            const value = $(this).val();
+            if ($(this).attr('id') === 'lettuce' || $(this).attr('id') === 'tomato' || $(this).attr('id') === 'onions' || $(this).attr('id') === 'pickles' || $(this).attr('id') === 'cheese') {
+                order.toppings.push(value);
+            } else if ($(this).attr('id') === 'mayonnaise' || $(this).attr('id') === 'mustard' || $(this).attr('id') === 'ketchup' || $(this).attr('id') === 'bbqSauce') {
+                order.condiments.push(value);
+            } else {
+                order.meatType.push(value);
+            }
         });
+
         $('#orderOutput').html(`<strong>Order Submitted!</strong><br>Name: ${order.customerName}<br>Phone: ${order.phoneNumber}`);
         console.log('Order:', JSON.stringify(order, null, 2));
     });
@@ -28,27 +42,9 @@ $(document).ready(() => {
         favoriteOrder.breadType = $('#breadType').val();
         favoriteOrder.size = $('#size').val();
         favoriteOrder.phoneNumber = $('#phoneNumber').val();
+        favoriteOrder.meatType = [];
         favoriteOrder.toppings = [];
+        favoriteOrder.condiments = [];
         $('input[type="checkbox"]:checked').each(function () {
-            favoriteOrder.toppings.push($(this).val());
-        });
-        $('#orderOutput').html('<strong>Favorite Order Saved!</strong>');
-    });
-
-    $('#loadOrder').on("click", () => {
-        if (!favoriteOrder.customerName) {
-            $('#orderOutput').html('<strong>No Favorite Order Saved!</strong>');
-            return;
-        }
-        $('#customerName').val(favoriteOrder.customerName);
-        $('#breadType').val(favoriteOrder.breadType);
-        $('#size').val(favoriteOrder.size);
-        $('#phoneNumber').val(favoriteOrder.phoneNumber);
-        $('input[type="checkbox"]').each(function () {
-            const topping = $(this).val();
-            $(this).prop('checked', favoriteOrder.toppings.includes(topping));
-        });
-        $('#orderOutput').html('<strong>Favorite Order Loaded!</strong>');
-    });
-});
-
+            const value = $(this).val();
+            if ($(this).attr('id') === 'lettuce' || $(
