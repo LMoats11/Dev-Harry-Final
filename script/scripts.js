@@ -1,62 +1,54 @@
-document.getElementById("loadOrder").addEventListener("click", () => {
-    const savedOrder = JSON.parse(localStorage.getItem("favoriteOrder"));
-    
-    if (savedOrder) {
-        document.getElementById("customerName").value = savedOrder.name;
-        const breadRadioButton = document.querySelector(`input[name="breadType"][value="${savedOrder.breadType}"]`);
-        if (breadRadioButton) {
-            breadRadioButton.checked = true;
-        } else {
-            console.log("Bread type not found, defaulting to white bread.");
-            document.querySelector('input[name="breadType"][value="White"]').checked = true;
-        }
-        
-        savedOrder.toppings.forEach(topping => {
-            const toppingCheckbox = document.getElementById(topping);
-            if (toppingCheckbox) {
-                toppingCheckbox.checked = true;
-            }
+$(document).ready(() => {
+    const favoriteOrder = {
+        customerName: '',
+        breadType: null,
+        toppings: [],
+        size: null,
+        phoneNumber: ''
+    };
+
+    $('#orderForm').on("submit", (e) => {
+        e.preventDefault();
+        const order = {
+            customerName: $('#customerName').val(),
+            breadType: $('#breadType').val(),
+            toppings: [],
+            size: $('#size').val(),
+            phoneNumber: $('#phoneNumber').val()
+        };
+        $('input[type="checkbox"]:checked').each(function () {
+            order.toppings.push($(this).val());
         });
-        
-        document.getElementById("size").value = savedOrder.size;
-        document.getElementById("phoneNumber").value = savedOrder.phoneNumber;
-    } else {
-        alert("No favorite order found!");
-    }
+        $('#orderOutput').html(`<strong>Order Submitted!</strong><br>Name: ${order.customerName}<br>Phone: ${order.phoneNumber}`);
+        console.log('Order:', JSON.stringify(order, null, 2));
+    });
+
+    $('#makeFavorite').on("click", () => {
+        favoriteOrder.customerName = $('#customerName').val();
+        favoriteOrder.breadType = $('#breadType').val();
+        favoriteOrder.size = $('#size').val();
+        favoriteOrder.phoneNumber = $('#phoneNumber').val();
+        favoriteOrder.toppings = [];
+        $('input[type="checkbox"]:checked').each(function () {
+            favoriteOrder.toppings.push($(this).val());
+        });
+        $('#orderOutput').html('<strong>Favorite Order Saved!</strong>');
+    });
+
+    $('#loadOrder').on("click", () => {
+        if (!favoriteOrder.customerName) {
+            $('#orderOutput').html('<strong>No Favorite Order Saved!</strong>');
+            return;
+        }
+        $('#customerName').val(favoriteOrder.customerName);
+        $('#breadType').val(favoriteOrder.breadType);
+        $('#size').val(favoriteOrder.size);
+        $('#phoneNumber').val(favoriteOrder.phoneNumber);
+        $('input[type="checkbox"]').each(function () {
+            const topping = $(this).val();
+            $(this).prop('checked', favoriteOrder.toppings.includes(topping));
+        });
+        $('#orderOutput').html('<strong>Favorite Order Loaded!</strong>');
+    });
 });
 
-document.getElementById("makeFavorite").addEventListener("click", () => {
-    const orderData = {
-        name: document.getElementById("customerName").value,
-        breadType: document.querySelector('[name="breadType"]:checked')?.value,
-        toppings: Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.id),
-        size: document.getElementById("size").value,
-        phoneNumber: document.getElementById("phoneNumber").value
-    };
-    localStorage.setItem("favoriteOrder", JSON.stringify(orderData));
-    alert("Order saved as favorite!");
-});
-
-document.getElementById("orderForm").addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const orderData = {
-        name: document.getElementById("customerName").value,
-        breadType: document.querySelector('[name="breadType"]:checked').value,
-        toppings: Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.value),
-        size: document.getElementById("size").value,
-        phoneNumber: document.getElementById("phoneNumber").value
-    };
-
-    const outputHTML = `
-        <p><strong>Name:</strong> ${orderData.name}</p>
-        <p><strong>Bread Type:</strong> ${orderData.breadType}</p>
-        <p><strong>Toppings:</strong> ${orderData.toppings.length > 0 ? orderData.toppings.join(", ") : "None"}</p>
-        <p><strong>Size:</strong> ${orderData.size}</p>
-        <p><strong>Phone Number:</strong> ${orderData.phoneNumber}</p>
-    `;
-
-    document.getElementById("orderOutput").innerHTML = outputHTML;
-
-    console.log(JSON.stringify(orderData, null, 2));
-});
