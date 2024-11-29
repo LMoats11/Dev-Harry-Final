@@ -9,7 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="/style/styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container my-5">
@@ -39,20 +39,35 @@
                     <div class="mb-3 section-header">
                         <label class="form-label">Choose Meat:</label>
                     </div>
-                    <select id="meatType" class="form-select">
-                        <option value="" selected>Select Meat</option>
-                        <option value="Chicken">Chicken</option>
-                        <option value="Turkey">Turkey</option>
-                        <option value="Ham">Ham</option>
-                        <option value="Roast Beef">Roast Beef</option>
-                        <option value="Tuna">Tuna</option>
-                        <option value="Vegetarian">Vegetarian</option>
-                    </select>
+                    <div>
+                        <input type="checkbox" id="chicken" value="Chicken">
+                        <label for="chicken">Chicken</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="turkey" value="Turkey">
+                        <label for="turkey">Turkey</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="ham" value="Ham">
+                        <label for="ham">Ham</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="roastBeef" value="Roast Beef">
+                        <label for="roastBeef">Roast Beef</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="tuna" value="Tuna">
+                        <label for="tuna">Tuna</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="vegetarian" value="Vegetarian">
+                        <label for="vegetarian">Vegetarian</label>
+                    </div>
                     <div class="mb-3 section-header">
                         <label class="form-label">Toppings:</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="lettuce" value="Lettuce" checked>
+                        <input type="checkbox" id="lettuce" value="Lettuce">
                         <label for="lettuce">Lettuce</label>
                     </div>
                     <div>
@@ -113,6 +128,6 @@
         <a href="https://github.com/LMoats11/sandwich-order-app" class="btn btn-link">Source Code</a>
         <a href="https://validator.w3.org/" class="btn btn-link">Nu HTML Validator</a>
     </div>
-    <script src="/script/scripts.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>
