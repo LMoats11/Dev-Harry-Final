@@ -4,22 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sandwich Order App</title>
-
-    <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-    <!-- jQuery UI -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
-
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
-
-    <!-- Bootstrap JS Bundle -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container my-5">
@@ -31,25 +21,33 @@
                 <form id="orderForm">
                     <button type="button" id="loadOrder" class="btn btn-secondary mb-3">Load Favorite Order</button>
                     <button type="button" id="makeFavorite" class="btn btn-warning mb-3">Make Favorite</button>
-
                     <p class="text-muted">Tip: Use "Make Favorite" to save your order and "Load Favorite" to retrieve it later.</p>
-
                     <div class="mb-3">
                         <label for="customerName" class="form-label">Your Name:</label>
                         <input type="text" id="customerName" class="form-control" placeholder="Enter your name" value="Joe">
                     </div>
-
                     <div class="mb-3 section-header">
                         <label class="form-label">Choose Bread Type:</label>
                     </div>
                     <select id="breadType" class="form-select">
-                        <option value="" selected>Select Size</option>
+                        <option value="" selected>Select Bread</option>
                         <option value="White">White</option>
                         <option value="Whole Wheat">Whole Wheat</option>
                         <option value="Sourdough">Sourdough</option>
                         <option value="Rye">Rye</option>
                     </select>
-
+                    <div class="mb-3 section-header">
+                        <label class="form-label">Choose Meat:</label>
+                    </div>
+                    <select id="meatType" class="form-select">
+                        <option value="" selected>Select Meat</option>
+                        <option value="Chicken">Chicken</option>
+                        <option value="Turkey">Turkey</option>
+                        <option value="Ham">Ham</option>
+                        <option value="Roast Beef">Roast Beef</option>
+                        <option value="Tuna">Tuna</option>
+                        <option value="Vegetarian">Vegetarian</option>
+                    </select>
                     <div class="mb-3 section-header">
                         <label class="form-label">Toppings:</label>
                     </div>
@@ -73,7 +71,25 @@
                         <input type="checkbox" id="cheese" value="Cheese">
                         <label for="cheese">Cheese</label>
                     </div>
-
+                    <div class="mb-3 section-header">
+                        <label class="form-label">Condiments:</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="mayonnaise" value="Mayonnaise">
+                        <label for="mayonnaise">Mayonnaise</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="mustard" value="Mustard">
+                        <label for="mustard">Mustard</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="ketchup" value="Ketchup">
+                        <label for="ketchup">Ketchup</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="bbqSauce" value="BBQ Sauce">
+                        <label for="bbqSauce">BBQ Sauce</label>
+                    </div>
                     <div class="mb-3 section-header">
                         <label class="form-label">Choose Size:</label>
                     </div>
@@ -83,26 +99,20 @@
                         <option value="Medium">Medium</option>
                         <option value="Large">Large</option>
                     </select>
-
                     <div class="mb-3">
                         <label for="phoneNumber" class="form-label">Phone Number:</label>
                         <input type="tel" id="phoneNumber" class="form-control" placeholder="Enter your phone number">
                     </div>
-
                     <button type="submit" class="btn btn-primary">Submit Order</button>
                 </form>
-
                 <div id="orderOutput" class="mt-4"></div>
             </div>
         </div>
     </div>
-
     <div class="container mt-5 text-center">
         <a href="https://github.com/LMoats11/sandwich-order-app" class="btn btn-link">Source Code</a>
         <a href="https://validator.w3.org/" class="btn btn-link">Nu HTML Validator</a>
     </div>
-
-    <!-- Custom JS -->
-    <script src="scripts.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
